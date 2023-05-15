@@ -17,7 +17,7 @@ const store = useDefaultStore()
   <main class="container ">
     <RouterView/>
   </main>
-  <footer class="page-footer">
+  <footer class="page-footer" v-if="store.isMenuVisible">
     <div class="container">
       <div class="row">
         <div class="col s12 m6">
