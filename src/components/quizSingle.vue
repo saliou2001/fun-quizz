@@ -7,12 +7,12 @@
         :barPercentage="barPercentage"/>
     <Question
         v-if="!showResults"
-        :question="quiz.questions[currentQuestionIndex]"
+        :question="quizSingle.questions[currentQuestionIndex]"
         @selectOption="onOptionSelected"
     />
     <Result
         v-else
-        :quizQuestionLength="quiz.questions.length"
+        :quizQuestionLength="quizSingle.questions.length"
         :numberOfCorrectAnswers="numberOfCorrectAnswers"
     />
   </div>
@@ -35,21 +35,21 @@ const nomCategorie=ref(store.quizs[id].nom)
 const questions=ref(store.quizs[id].questions)
 const quiz = computed(() => store.quizs[id])
 const currentQuestionIndex = ref(0)
-const currentQuestion = computed(() => quiz.value.questions[currentQuestionIndex.value])
-const questionStatus = computed(() => `${currentQuestionIndex.value}/${quiz.value.questions.length}`)
-const barPercentage = computed(() => `${currentQuestionIndex.value/quiz.value.questions.length * 100}%`)
+const currentQuestion = computed(() => quizSingle.value.questions[currentQuestionIndex.value])
+const questionStatus = computed(() => `${currentQuestionIndex.value}/${quizSingle.value.questions.length}`)
+const barPercentage = computed(() => `${currentQuestionIndex.value/quizSingle.value.questions.length * 100}%`)
 
 const numberOfCorrectAnswers = ref(0)
 const showResults = ref(false)
 
 
 const onOptionSelected = (isCorrect) => {
-  if(isCorrect === quiz.value.questions[currentQuestionIndex.value].ok){
+  if(isCorrect === quizSingle.value.questions[currentQuestionIndex.value].ok){
     console.log("correct")
     numberOfCorrectAnswers.value++;
   }
 
-  if(quiz.value.questions.length - 1 === currentQuestionIndex.value){
+  if(quizSingle.value.questions.length - 1 === currentQuestionIndex.value){
     showResults.value = true
   }
   currentQuestionIndex.value++;

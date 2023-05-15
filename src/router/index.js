@@ -15,8 +15,8 @@ const routes = [
     },
     {
         path: '/quiz/:id',
-        name : 'quiz',
-        component : () => import('../components/Quiz.vue'),
+        name : 'quizSingle',
+        component : () => import('../components/quizSingle.vue'),
     },
 ]
 
