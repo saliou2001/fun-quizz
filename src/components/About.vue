@@ -1,7 +1,7 @@
 <template>
     <div class="card container">
       <div class="card-content">
-        <h1 class="card-title">Saliou Bailo BAH</h1>
+        <h1 class="card-title" id="top">Saliou Bailo BAH</h1>
         <div class="card-image">
         <div class="photo-container" @click="toggleZoom" :style="photoStyle">
           <img src="https://pbs.twimg.com/media/Dk5rZlqXsAA4Qq6.jpg" alt="My avatar">
