@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Quizs from '../components/Quizs.vue'
+
 
 const routes = [
     // À compléter
     {
       path: '/',
       name : 'Quizs',
-      component : Quizs
+      component : () => import('../components/Quizs.vue'),
     },
     {
         path: '/About',
