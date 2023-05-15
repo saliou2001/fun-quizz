@@ -4,7 +4,7 @@
         <h1 class="card-title">Saliou Bailo BAH</h1>
         <div class="card-image">
         <div class="photo-container" @click="toggleZoom" :style="photoStyle">
-          <img src="src/assets/img/me.jpg" alt="My avatar">
+          <img src="https://pbs.twimg.com/media/Dk5rZlqXsAA4Qq6.jpg" alt="My avatar">
         </div>
         </div>
         <div class="card-text">
