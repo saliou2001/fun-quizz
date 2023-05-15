@@ -16,10 +16,25 @@ const store = useDefaultStore()
   <NavBar v-if="store.isMenuVisible"/>
   <main class="container ">
     <RouterView/>
-
   </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Quiz</strong> by Saliou Bailo Bah.
+        </p>
+        <p><RouterLink to="/about">Click here </RouterLink></p>
+      </div>
+    </div>
+    </footer>
 </template>
 
 <style>
+.footer{
+  position: relative;
 
+  height: 160px;
+
+  background-color: #2e3c5e;
+}
 </style>
