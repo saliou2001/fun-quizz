@@ -1,5 +1,5 @@
 <script setup>
-import Quizs from './components/Quizs.vue'
+import Quizs from './components/QuizView.vue'
 
 // si vous voulez utilisez pinia , il faut placer ces deux lignes dans le composant de votre choix.
 import { useDefaultStore } from './stores/index'

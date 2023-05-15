@@ -5,8 +5,8 @@ const routes = [
     // À compléter
     {
       path: '/',
-      name : 'Quizs',
-      component : () => import('../components/Quizs.vue'),
+      name : 'quiz-view',
+      component : () => import('../components/QuizView.vue'),
     },
     {
         path: '/About',
