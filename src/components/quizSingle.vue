@@ -45,7 +45,6 @@ const showResults = ref(false)
 
 const onOptionSelected = (isCorrect) => {
   if(isCorrect === quiz.value.questions[currentQuestionIndex.value].ok){
-    console.log("correct")
     numberOfCorrectAnswers.value++;
   }
 

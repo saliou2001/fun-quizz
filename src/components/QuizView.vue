@@ -8,31 +8,42 @@
       <input v-model.trim="search" type="text" placeholder="Rechercher..." >
     </header>
     </div>
-    <div class="options-container">
+    <div class="spinner" v-if="loadingQuiz"></div>
+      <div class="options-container" v-else>
       <TransitionGroup
           @before-enter="beforeEnter"
           @enter="enter"
           appear
       >
-        <Card v-for="(quiz, index) in listeSearch" :key="index" :id="index" :quiz="quiz" :data-index="index" />
+
+        <Card v-for="(quiz, index) in store.listeRecherche" :key="index" :id="index" :quiz="quiz" :data-index="index" />
       </TransitionGroup>
+      </div>
     </div>
     <div class="ajoutQuiz"><button :class="{'btn-floating btn-large pulse': !ajoutQuiz, 'btn-floating btn-large red': ajoutQuiz} " @click="scrollToSection('sectionAjout')"><i class="material-icons">{{ ajoutQuiz ? "clear":"add"}}</i></button></div>
     <div ref="sectionAjout" >
-        <AjoutQuiz v-if="ajoutQuiz" :quizes="quizes" />
+        <AjoutQuiz v-if="ajoutQuiz" :quizes="listeSearch" />
     </div>
-  </div>
+
+
 </template>
 
 <script setup>
 import { useDefaultStore } from '../stores/index'
 import gsap from "gsap"
 
-import {ref, watch} from "vue";
+import {onMounted, onUpdated, ref, watch} from "vue";
 import Card from "@/components/Card.vue";
 import AjoutQuiz from "@/components/AjoutQuiz.vue";
 const store = useDefaultStore()
-const quizes = ref(store.quizs)
+
+const loadingQuiz=ref(true)
+let listeSearch=ref(store.quizs)
+onMounted( () => {
+  store.getDatas()
+  loadingQuiz.value=false
+})
+
 const beforeEnter = (el) => {
   el.style.transform = "translateY(-60px)"
   el.style.opacity = 0;
@@ -46,11 +57,15 @@ const enter = (el) => {
   })
 }
 const search= ref("")
-const listeSearch=ref(quizes.value)
-watch(search, () => {
-  if (search.value === "") return (listeSearch.value = quizes.value)
-  listeSearch.value = quizes.value.filter(quiz => quiz.nom.toLowerCase().includes(search.value.toLowerCase()))
-})
+
+watch(search, (search) => {
+  if(search===""){
+    store.listeRecherche=store.quizs
+    return
+  }
+  store.listeRecherche = store.listeRecherche.filter(quiz => quiz.nom.toLowerCase().includes(search.toLowerCase()))
+}
+)
 
 const ajoutQuiz = ref(false)
 const sectionAjout = ref(null)
@@ -65,6 +80,25 @@ function scrollToSection(sectionRef) {
 </script>
 
 <style scoped>
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  margin-left: 100px;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 header {
   margin-bottom: 10px;
 

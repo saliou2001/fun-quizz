@@ -40,6 +40,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import {useDefaultStore} from "@/stores";
 
     const quizz = ref(
       {
@@ -69,6 +70,7 @@ function removeQuestion(ind) {
   index.value--
 }
 
+const store = useDefaultStore()
 
     function submitQuiz() {
       // Ajouter le quiz
@@ -77,7 +79,6 @@ function removeQuestion(ind) {
         img: "https://picsum.photos/200/300",
         questions:[]
       };
-      console.log(index.value)
       for (let i=0;i<=index.value;i++)
       {
 
@@ -87,11 +88,12 @@ function removeQuestion(ind) {
               ok: quizz.value.questions[i].ok
         });
       }
-      quizes.push(newQuiz);
+
+      store.addQuiz(newQuiz);
       index.value=0
       //Réinitialiser le formulaire
 
-      quizz.value.nom= "";
+        quizz.value.nom= "";
       quizz.value.questions.splice(0, quizz.value.questions.length, {
         question: "",
         answers: "",

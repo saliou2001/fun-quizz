@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import {ref} from "vue";
+import Axios from "axios";
 
 export const useDefaultStore = defineStore({
   id: 'default',
   state: () => ({
-  quizs : ref([
+  quizs :[],
+    listeRecherche:[]
+    /*ref([
   {
     "nom" : "Culture générale",
     "img" : "src/assets/img/culture-quiz.jpg",
@@ -113,19 +116,33 @@ export const useDefaultStore = defineStore({
       }
     ]
   }
-]),
+])*/,
     isMenuVisible: true,
   }),
   getters: {
-    getQuizs: (state) => {
-        return state.quizs
+    getQuizzes:(state) => {
+      return state.quizs
     },
-    getQuizByIndex: (state) => (index) => {
-        return state.quizs[index]
-    }
+    rechercheQuiz:(state) => (nom) => {
+      return state.listeRecherche.filter(quiz => quiz.nom.toLowerCase().includes(nom))
+    },
+
 
   },
   actions: {
-    
+    getDatas() {
+      Axios.get('http://localhost:3000/quizs')
+          .then(response => response.data)
+          .then(donneesQuizs => {
+            this.quizs = donneesQuizs
+            this.listeRecherche = donneesQuizs
+          })
+    },
+    addQuiz(quiz) {
+      this.quizs.push(quiz)
+      this.listeRecherche.push(quiz)
+    },
+
+
   }
 })
