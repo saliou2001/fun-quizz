@@ -8,8 +8,8 @@
       <input v-model.trim="search" type="text" placeholder="Rechercher..." >
     </header>
     </div>
-    <div class="spinner" v-if="loadingQuiz"></div>
-      <div class="options-container" v-else>
+
+      <div class="options-container" >
       <TransitionGroup
           @before-enter="beforeEnter"
           @enter="enter"
