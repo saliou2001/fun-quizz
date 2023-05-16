@@ -16,7 +16,7 @@
           appear
       >
 
-        <Card v-for="(quiz, index) in store.listeRecherche" :key="index" :id="index" :quiz="quiz" :data-index="index" />
+        <Card v-for="(quiz, index) in listeRecherche" :key="index" :id="index" :quiz="quiz" :data-index="index" />
       </TransitionGroup>
       </div>
     </div>
@@ -39,10 +39,10 @@ const store = useDefaultStore()
 
 const loadingQuiz=ref(true)
 let listeSearch=ref(store.quizs)
-onMounted( () => {
-  store.getDatas()
-  loadingQuiz.value=false
-})
+// onMounted( () => {
+//   store.getDatas()
+//   loadingQuiz.value=false
+// })
 
 const beforeEnter = (el) => {
   el.style.transform = "translateY(-60px)"
@@ -57,13 +57,16 @@ const enter = (el) => {
   })
 }
 const search= ref("")
-
+const listeRecherche=ref(store.listeRecherche)
+console.log(listeRecherche.value)
 watch(search, (search) => {
   if(search===""){
-    store.listeRecherche=store.quizs
+    //store.listeRecherche=store.quizs
+    listeRecherche.value=store.quizs
     return
   }
-  store.listeRecherche = store.listeRecherche.filter(quiz => quiz.nom.toLowerCase().includes(search.toLowerCase()))
+  //store.listeRecherche = store.listeRecherche.filter(quiz => quiz.nom.toLowerCase().includes(search.toLowerCase()))
+      listeRecherche.value = listeRecherche.value.filter(quiz => quiz.nom.toLowerCase().includes(search.toLowerCase()))
 }
 )
 
