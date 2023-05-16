@@ -120,7 +120,7 @@ export const useDefaultStore = defineStore({
       [
         {
           "nom" : "Culture générale",
-          "img" : "src/assets/img/culture-quiz.jpg",
+          "img": "https://www.successcolaire.ca/blogue/wp-content/uploads/2020/03/culture-generale-examen-pratique-en-ligne-admission-secondaire-e1583165298977.png",
           "questions" : [
             {
               "question": "Quel révolutionnaire et grand orateur a déclaré en 1792 : “De l’audace, encore de l’audace, toujours de l’audace.”",
@@ -156,7 +156,7 @@ export const useDefaultStore = defineStore({
         },
         {
           "nom" : "Informatique",
-          "img" : "src/assets/img/info-quiz.jpg",
+          "img": "https://www.maxigadget.com/wp-content/uploads/2016/09/Quizz-informatique-test-connaissances.jpg",
           "questions" : [
             {
               "question": "Quel est l'inventeur du web",
@@ -192,7 +192,7 @@ export const useDefaultStore = defineStore({
         },
         {
           "nom" : "Technique",
-          "img" : "src/assets/img/fun-quizz.png",
+          "img": "https://m.infox.ru/smart/thumbs/145/483_in-technical-answer.jpg",
           "questions" : [
             {
               "question": "Quelle est la science de base des autres sciences ?",
